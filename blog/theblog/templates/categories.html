@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Blog SergioRiberaID{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    {% if category_posts %}
+        <h2 class="pt-3">Categoria <strong>{{ cats }}</strong></h2>
+        <hr>
+        <div class="container">
+            <div class="row px-2 mb-4">
+                {% for x in category_posts %}
+                    <div class="col-12 col-sm-6 pt-2">
+                        <div class="post">
+                            <img src="img/bg02.png" style="width: 100%;">
+                            <a href="{% url 'post' x.pk %}">
+                                <div style="padding: .2rem;">
+                                    <h3 style="font-size: calc(1rem + 1vh);">{{ x.title }}</h3>
+                                    <span>{{ x.author }} - {{ x.post_date }}</span>
+                                    <span><a href="{% url 'update_post' x.pk %}" target="_blank">Edit</a></span>
+                                    <span><small><a href="{% url 'delete_post' x.pk %}"> Delete Post </a></small></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <h3 class="pt-3">No hay Publicaciones con esta categoria</h3>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Edit Blog Post SergioRiberaID{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <div class="container mt-5 pt-4">
+            <h2>Editar Post</h2>
+            <hr>
+            <br>
+            <div class="form-group">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-dark">Actualizar</button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+            <h2>You are not allowed here!! (and you know it....)</h2>
+        {% endif %}
+{% else %}
+
+<h2>You are not allowed here!! (and you know it....)</h2>
+
+{% endif %}
+{% endblock %}

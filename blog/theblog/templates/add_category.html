@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Add Category To Blog SergioRiberaID{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <div class="container mt-5 pt-4">
+        <h2>Agregar Categoria</h2>
+        <hr>
+        <br>
+        <div class="form-group">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-dark">Agregar Categoria</button>
+            </form>
+        </div>
+    </div>
+{% else %}
+
+<h2>You are not allowed here!! (and you know it....)</h2>
+
+{% endif %}
+{% endblock %}

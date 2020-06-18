@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }} | {{ post.author.username }}{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <!-- Page content -->
+    <h1 class="pt-3">{{ post.title }}</h1>
+    <span class="lead">By: <strong>{{ post.author.username }} - {{ post.post_date }}    </strong></span>
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+            <span><a href="{% url 'update_post' post.pk %}">Edit    </a></span>
+            <span><a href="{% url 'delete_post' post.pk %}"> Delete Post </a></span>
+        {% endif %}
+    {% endif %}
+    <hr>
+    {{ post.body|safe }}
+</div>
+<div class="container">
+    <h2 class="pt-3">Artículos Relacionados</h2>
+    <hr>
+    <div class="row px-2 mb-4">
+        <div class="col-12 col-sm-6 pt-2">
+            <div class="post">
+                <img src="img/bg02.png" style="width: 100%;">
+                <a href="">
+                    <div style="padding: .2rem;">
+                        <h3 style="font-size: calc(1rem + 1vh);">Publicación de Blog 01</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 pt-2">
+            <div class="post">
+                <img src="img/bg02.png" style="width: 100%;">
+                <a href="">
+                    <div style="padding: .2rem;">
+                        <h3 style="font-size: calc(1rem + 1vh);">Publicación de Blog 01</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row px-2 mb-4">
+        <div class="col-12 col-sm-6 pt-2">
+            <div class="post">
+                <img src="img/bg02.png" style="width: 100%;">
+                <a href="">
+                    <div style="padding: .2rem;">
+                        <h3 style="font-size: calc(1rem + 1vh);">Publicación de Blog 01</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 pt-2">
+            <div class="post">
+                <img src="img/bg02.png" style="width: 100%;">
+                <a href="">
+                    <div style="padding: .2rem;">
+                        <h3 style="font-size: calc(1rem + 1vh);">Publicación de Blog 01</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row px-2 mb-4">
+        <div class="col-12 col-sm-6 pt-2">
+            <div class="post">
+                <img src="img/bg02.png" style="width: 100%;">
+                <a href="">
+                    <div style="padding: .2rem;">
+                        <h3 style="font-size: calc(1rem + 1vh);">Publicación de Blog 01</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 pt-2">
+            <div class="post">
+                <img src="img/bg02.png" style="width: 100%;">
+                <a href="">
+                    <div style="padding: .2rem;">
+                        <h3 style="font-size: calc(1rem + 1vh);">Publicación de Blog 01</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

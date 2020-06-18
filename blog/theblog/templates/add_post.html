@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Add Post To Blog SergioRiberaID{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id == 1 %}
+        <div class="container mt-5 pt-4">
+            <h2>Crear Post</h2>
+            <hr>
+            <br>
+            <div class="form-group">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-dark">Crear</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            document.getElementById('elder').value = "{{ user.id }}";
+        </script>
+    {% else %}
+    <h2>You are not allowed here!! (and you know it....)</h2>
+    {% endif %}
+{% else %}
+
+<h2>You are not allowed here!! (and you know it....)</h2>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Blog SergioRiberaID{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <!-- Page content -->
+    <p class="pt-4"><h3>Bienvenido</h3> al blog de SergioRiberaID el mejor post de tecnología y desarrollo de software en donde encontrarás contenido muy variado y basto, ¿te cuento una curiosidad? Este blog esta hecho en Python con Django por mi mismo, ¿te gusta? Dejamelo saber :D</p>
+    <h2 class="pt-3">Artículos Recientes</h2>
+    <hr>
+    <div class="container">
+        <div class="row px-2 mb-4">
+            {% for x in object_list %}
+                <div class="col-12 col-sm-6 pt-2">
+                    <div class="post">
+                        <img src="img/bg02.png" style="width: 100%;">
+                        <a href="{% url 'post' x.pk %}">
+                            <div style="padding: .2rem;">
+                                <h3 style="font-size: calc(1rem + 1vh);">{{ x.title }}</h3>
+                                <span>{{ x.author }} - {{ x.post_date }}</span>
+                                <span><a href="{% url 'category' x.category|slugify %}">{{ x.category }}</a></span>
+                                {% if user.is_authenticated %}
+                                    {% if user.id == x.author.id %}
+                                        <span><a href="{% url 'update_post' x.pk %}">Edit</a></span>
+                                        <span><small><a href="{% url 'delete_post' x.pk %}"> Delete Post </a></small></span>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- // Page content -->
+</div>
+{% endblock %}
